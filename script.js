@@ -1,0 +1,66 @@
+let chatInput = document.querySelector(".chat-input input");
+const sendChatBtn = document.querySelector(".chat-input span");
+const chatBox = document.querySelector(".chatBox");
+
+let userMessage;
+
+const createChatLi = (message, className) => {
+    const chatLi = document.createElement("li");
+    chatLi.classList.add("chat", className)
+    let chatContent = className === "outgoing" ? `<p>${message}</p>`: `<p>${message}</p>`
+    chatLi.innerHTML = chatContent;
+    return chatLi;
+}
+
+let generateResponse = (incomingChatLi) => {
+    const url = document.getElementById('message').value;
+    const apiUrl = `https://api.ngodingaja.my.id/api/gpt?prompt=${encodeURIComponent(url)}`;
+    let hasil = incomingChatLi.querySelector("p")
+
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        if (data.status) {
+            hasil.textContent = data.hasil;
+
+        } else {
+            hasil.textContent = 'Maaf, saya tidak mengerti apa yang Anda tanyakan. Bisakah Anda ulangi pertanyaan Anda?';
+        }
+    })
+    .catch(error => {
+        hasil.textContent = 'Terjadi kesalahan pada sistem, coba lagi nanti.';
+        console.error('Error:', error);
+    }).finally(() => chatBox.scrollTo(0, chatBox.scrollHeight));
+}
+
+const handleChat = () => {
+
+    userMessage = chatInput.value.trim();
+    if (!userMessage) return;
+
+
+    chatBox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatBox.scrollTo(0, chatBox.scrollHeight)
+
+    const incomingChatLi = createChatLi("...", "incoming");
+    chatBox.appendChild(incomingChatLi);
+    chatBox.scrollTo(0, chatBox.scrollHeight)
+    generateResponse(incomingChatLi)
+    chatInput.value = "";
+
+    var counter = 6;
+    setInterval(function() {
+        counter--;
+        if (counter >= 0) {
+            chatInput.readOnly = true;
+            chatInput.placeholder='Mohon tunggu dalam ' + counter + 'detik';
+        }
+        if (counter === 0) {
+            chatInput.readOnly = false;
+            chatInput.placeholder='Masukkan pertanyaanmu disini...';
+        }
+    },
+        1000);
+}
+
+sendChatBtn.addEventListener("click", handleChat);
