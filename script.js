@@ -4,6 +4,14 @@ window.addEventListener('load', function(){
     loader.style.display = 'none';
 });
 
+function faq(){
+    document.querySelector(".contentFAQ").style.display = "flex"
+}
+
+function closeFaq(){
+    document.querySelector(".contentFAQ").style.display = "none"
+}
+
 let chatInput = document.querySelector(".chat-input input");
 const sendChatBtn = document.querySelector(".chat-input span");
 const chatBox = document.querySelector(".chatBox");
