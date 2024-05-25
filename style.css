@@ -7,9 +7,48 @@
 }
 
 body {
-    background: #E3F2FD;
+    background: #F7F7F7;
     font-family: "Poppins", sans-serif;
     font-style: normal;
+}
+
+#loader {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    z-index: 101;
+    background-color: #ffffff;
+}
+#loader:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid black;
+    border-color: black transparent black transparent;
+    animation: searah 1.2s linear infinite;
+}
+
+@keyframes searah {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+p {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #0F1921;
 }
 
 .chatBot {
@@ -18,11 +57,11 @@ body {
     height: 100%;
     overflow: hidden;
     background: #ffffff;
-    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
 }
 
 .chatBot header {
-    background: #28283C;
+    background: #00001A;
+    border-bottom: 1px solid #ccc;
     padding: 16px 0;
     text-align: center;
 }
