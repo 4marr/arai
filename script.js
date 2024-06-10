@@ -21,21 +21,22 @@ let userMessage;
 const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className)
-    let chatContent = className === "outgoing" ? `<p>${message}</p>`: `<p>${message}</p>`
+    let chatContent = className === "outgoing" ? `<p></p>` : `<pre><p></p></pre>`
     chatLi.innerHTML = chatContent;
+    chatLi.querySelector("p").textContent = message;
     return chatLi;
 }
 
 let generateResponse = (incomingChatLi) => {
     const url = document.getElementById('message').value;
-    const apiUrl = `https://api.ngodingaja.my.id/api/gpt?prompt=${encodeURIComponent(url)}`;
+    const apiUrl = `https://api.nyx.my.id/ai/gpt4?text=${encodeURIComponent(url)}`;
     let hasil = incomingChatLi.querySelector("p")
 
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
         if (data.status) {
-            hasil.textContent = data.hasil;
+            hasil.textContent = data.result;
 
         } else {
             hasil.textContent = 'Maaf, saya tidak mengerti apa yang Anda tanyakan. Bisakah Anda ulangi pertanyaan Anda?';
@@ -56,7 +57,7 @@ const handleChat = () => {
     chatBox.appendChild(createChatLi(userMessage, "outgoing"));
     chatBox.scrollTo(0, chatBox.scrollHeight)
 
-    const incomingChatLi = createChatLi("...", "incoming");
+    const incomingChatLi = createChatLi("•••", "incoming");
     chatBox.appendChild(incomingChatLi);
     chatBox.scrollTo(0, chatBox.scrollHeight)
     generateResponse(incomingChatLi)
@@ -67,7 +68,7 @@ const handleChat = () => {
         counter--;
         if (counter >= 0) {
             chatInput.readOnly = true;
-            chatInput.placeholder='Mohon tunggu dalam ' + counter + 'detik';
+            chatInput.placeholder='Mohon tunggu dalam ' + counter + ' detik';
         }
         if (counter === 0) {
             chatInput.readOnly = false;

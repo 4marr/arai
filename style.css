@@ -114,16 +114,22 @@ p {
 .chatBox .chat p {
     color: #ffffff;
     max-width: 75%;
+    box-sizing: border-box;
     font-size: 0.95rem;
     padding: 12px 16px;
     border-radius: 10px 10px 0 10px;
     background: #28283C;
+    text-wrap: wrap;
 }
 
 .chatBox .incoming p {
     color: #000000;
     background: #F2F2F2;
     border-radius: 10px 10px 10px 0;
+}
+
+pre{
+    box-sizing: border-box;
 }
 
 .chatBot .chat-input {
