@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#00001A">
+    <meta name="theme-color" content="#000000">
     <title>Chatbot</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Symbols+Outlined: opsz, wght, FILL, GRAD@48,400,0,0" />
     <link rel="stylesheet" href="style.css" type="text/css" media="all" />
@@ -11,26 +11,26 @@
 <body>
     <div id="loader"></div>
     <div class="contentFAQ">
-        <p><strong>Q : bang kok delay nya lama banget? </strong>
+        <p><strong>Q : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua? </strong>
         <br />
-        A : itu udah diatur sama yang punya Rest API untuk meminimalisir terjadinya spamming dan gua ngga ada kendali atas hal itu.</p>
-        <p><strong>Q : bang kok hasil penyampaian AI nya ngga rapih ya? </strong>
-        <br />
-        A : mohon maaf untuk itu gua ngga tau caranya dan gua juga udah cari tutor atau nanya ke orang lain tapi tetep ngga nemu caranya. karna disini sistemnya gua cuma ngambil data dari Rest API dimana tidak adanya sebuah paragraf/enter dalam data tersebut.</p>
+        A : Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p onclick="closeFaq()">< Kembali</p>
+        <p class="buildVer">v1.5.2(Beta) | made with &#10084;️ - All right reserved by ar.</p>
     </div>
     <div class="chatBot">
         <header>
-            <h2>arAI</h2>
-            <div class="btn-faq">
-                <p onclick="faq()" class="faq">FAQ</p>
+        <div class="brand">
+            <h2>arai</h2>
+            <p>Based on GPT-4</p>
+            </div>
+            <div class="button-action">
+                <span id="faq-button" onclick="faq()" class="material-symbols-outlined">info</span>
             </div>
         </header>
         <ul class="chatBox">
             <li class="chat incoming">
-                <span class="material-symbols-outlined"></span>
-                <p>
-                    Selamat datang! Saya arAI.<br /> Saya di sini untuk membantu Anda. Apa yang dapat saya lakukan untuk Anda hari ini?
+                <p class="welcome">
+                    Selamat datang! Saya arai.<br /> Saya di sini untuk membantu Anda. Apa yang dapat saya lakukan untuk Anda hari ini?
                 </p>
             </li>
             <li class="chat outgoing">
@@ -39,6 +39,7 @@
         <div class="chat-input">
             <input type="text" id="message" placeholder="Masukkan pertanyaanmu disini..." required="">
             <span id="send-button" class="material-symbols-outlined">send</span>
+            <span id="paste-button" class="material-symbols-outlined">content_paste</span>
         </div>
     </div>
     

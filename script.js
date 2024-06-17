@@ -1,14 +1,14 @@
 var loader = document.getElementById('loader');
 
-window.addEventListener('load', function(){
+window.addEventListener('load', function() {
     loader.style.display = 'none';
 });
 
-function faq(){
+function faq() {
     document.querySelector(".contentFAQ").style.display = "flex"
 }
 
-function closeFaq(){
+function closeFaq() {
     document.querySelector(".contentFAQ").style.display = "none"
 }
 
@@ -21,7 +21,7 @@ let userMessage;
 const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className)
-    let chatContent = className === "outgoing" ? `<p></p>` : `<pre><p></p></pre>`
+    let chatContent = className === "outgoing" ? `<p></p>`: `<pre><p></p></pre>`
     chatLi.innerHTML = chatContent;
     chatLi.querySelector("p").textContent = message;
     return chatLi;
@@ -29,15 +29,15 @@ const createChatLi = (message, className) => {
 
 let generateResponse = (incomingChatLi) => {
     const url = document.getElementById('message').value;
-    const apiUrl = `https://api.nyx.my.id/ai/gpt4?text=${encodeURIComponent(url)}`;
+    const apiUrl = `https://itzpire.com/ai/gpt?model=gpt-4&q=${encodeURIComponent(url)}`;
     let hasil = incomingChatLi.querySelector("p")
 
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
         if (data.status) {
-            hasil.textContent = data.result;
-
+            hasil.textContent = data.data.response;
+            console.log(data)
         } else {
             hasil.textContent = 'Maaf, saya tidak mengerti apa yang Anda tanyakan. Bisakah Anda ulangi pertanyaan Anda?';
         }
@@ -57,7 +57,7 @@ const handleChat = () => {
     chatBox.appendChild(createChatLi(userMessage, "outgoing"));
     chatBox.scrollTo(0, chatBox.scrollHeight)
 
-    const incomingChatLi = createChatLi("•••", "incoming");
+    const incomingChatLi = createChatLi("...", "incoming");
     chatBox.appendChild(incomingChatLi);
     chatBox.scrollTo(0, chatBox.scrollHeight)
     generateResponse(incomingChatLi)
@@ -68,14 +68,21 @@ const handleChat = () => {
         counter--;
         if (counter >= 0) {
             chatInput.readOnly = true;
-            chatInput.placeholder='Mohon tunggu dalam ' + counter + ' detik';
+            chatInput.placeholder = 'Mohon tunggu dalam ' + counter + ' detik';
         }
         if (counter === 0) {
             chatInput.readOnly = false;
-            chatInput.placeholder='Masukkan pertanyaanmu disini...';
+            chatInput.placeholder = 'Masukkan pertanyaanmu disini...';
         }
     },
         1000);
 }
 
 sendChatBtn.addEventListener("click", handleChat);
+
+const paste = document.getElementById('paste-button');
+
+paste.addEventListener("click", async() => {
+    const read = await navigator.clipboard.readText()
+    chatInput.value = read
+})

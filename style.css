@@ -7,7 +7,7 @@
 }
 
 body {
-    background: #F7F7F7;
+    background: #000000;
     font-family: "Poppins", sans-serif;
     font-style: normal;
 }
@@ -20,7 +20,7 @@ body {
     width: 100%;
     height: 100vh;
     z-index: 101;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 #loader:after {
     content: " ";
@@ -29,21 +29,28 @@ body {
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid black;
-    border-color: black transparent black transparent;
+    border: 6px solid white;
+    border-color: white transparent white transparent;
     animation: searah 1.2s linear infinite;
 }
 
 @keyframes searah {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#faq-button {
+    margin: 0 0 0 10px;
+    color: #0F8AF2;
+    font-size: 1.5rem;
 }
 
 .contentFAQ {
+    position: relative;
     width: 100%;
     height: 100vh;
     display: none;
@@ -52,14 +59,23 @@ body {
 }
 
 .contentFAQ p {
+    color: #ffffff;
     margin: 20px 0;
+}
+
+.buildVer {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    bottom: 5px;
+    font-size: 0.75rem;
 }
 
 p {
     font-family: "Poppins", sans-serif;
     font-style: normal;
     font-weight: 500;
-    color: #0F1921;
 }
 
 .chatBot {
@@ -67,39 +83,55 @@ p {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #ffffff;
+    background: transparent;
 }
 
 .chatBot header {
+    position: absolute;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    background: #ffffff;
-    border-bottom: 1px solid #ccc;
-    padding: 16px 30px;
+    background: transparent;
+    box-shadow: 0 8px 40px 8px rgba( 0, 0, 0, 1 );
+    backdrop-filter: blur( 20px );
+    color: white;
+    padding: 16px 20px;
 }
 
 .chatBot header h2 {
-    color: #00001A;
-    font-size: 1.4rem;
+    display: flex;
+    align-items: flex-end;
+    color: #ffffff;
+    font-size: 1.5rem;
+    background: transparent;
 }
 
-.btn-faq{
+.brand {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.brand p {
+    display: flex;
+    align-items: flex-end;
+    color: #ccc;
+    font-size: 0.60rem;
+    padding: 0;
+    margin-bottom: 0.30rem;
+}
+
+.button-action {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.faq{
-    color: #00001A;
-    font-size: 1rem;
-    font-weight: 400;
-    text-decoration: 1px underline;
-}
-
 .chatBot .chatBox {
-    height: 90%;
+    height: 91%;
     overflow-y: auto;
-    padding: 30px 20px 70px;
+    padding: 30px 20px 10px;
 }
 
 .chatBox .chat {
@@ -113,23 +145,27 @@ p {
 
 .chatBox .chat p {
     color: #ffffff;
-    max-width: 75%;
+    max-width: 75vw;
     box-sizing: border-box;
     font-size: 0.95rem;
     padding: 12px 16px;
     border-radius: 10px 10px 0 10px;
-    background: #28283C;
+    background: #0F8AF2;
     text-wrap: wrap;
 }
 
 .chatBox .incoming p {
-    color: #000000;
-    background: #F2F2F2;
+    color: #F5F5F5;
+    background: #262626;
     border-radius: 10px 10px 10px 0;
 }
 
-pre{
-    box-sizing: border-box;
+.chatBox .incoming .welcome {
+    margin: 56px 0 0 0;
+}
+
+pre {
+    white-space: pre-wrap;
 }
 
 .chatBot .chat-input {
@@ -137,22 +173,28 @@ pre{
     bottom: 0;
     width: 100%;
     display: flex;
+    align-items: center;
     gap: 5px;
-    background: #ffffff;
-    padding: 5px 20px;
-    border-top: 1px solid #ccc;
+    background: #262626;
+    padding: 0 20px;
+    margin: 0 0 5px 0;
+    border-top: 1px solid #000000;
+    border-radius: 33px;
+    overflow: hidden;
 }
 
 .chat-input input {
     font-family: "Poppins", sans-serif;
+    background: #262626;
+    color: #ffffff;
     font-style: normal;
-    height: 55px;
+    height: 56px;
     width: 100%;
     border: none;
     outline: none;
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     resize: none;
-    padding: 16px 15px 16px 0;
+    padding: 10px 15px 10px 0;
 }
 
 .chat-input input::placeholder {
@@ -160,19 +202,34 @@ pre{
     font-style: normal;
 }
 
-.chat-input span {
+.chat-input #send-button {
+    align-self: flex-end;
+    display: none;
+    align-items: center;
+    height: 56px;
+    line-height: 56px;
+    color: #0F8AF2;
+    font-size: 1.5rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.chat-input input:valid ~ #send-button {
+    display: flex;
+}
+
+.chat-input #paste-button {
     align-self: flex-end;
     display: flex;
     align-items: center;
     height: 55px;
     line-height: 55px;
-    color: #28283C;
-    font-size: 1.35rem;
+    color: #0F8AF2;
+    font-size: 1.5rem;
     cursor: pointer;
-    visibility: hidden;
     -webkit-tap-highlight-color: transparent;
 }
 
-.chat-input input:valid ~ span {
-    visibility: visible;
+.chat-input input:valid ~ #paste-button {
+    display: none;
 }
