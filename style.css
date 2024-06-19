@@ -46,7 +46,7 @@ body {
 #faq-button {
     margin: 0 0 0 10px;
     color: #0F8AF2;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .contentFAQ {
@@ -96,14 +96,14 @@ p {
     box-shadow: 0 8px 40px 8px rgba( 0, 0, 0, 1 );
     backdrop-filter: blur( 20px );
     color: white;
-    padding: 16px 20px;
+    padding: 12px 20px;
 }
 
 .chatBot header h2 {
     display: flex;
     align-items: flex-end;
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     background: transparent;
 }
 
@@ -119,7 +119,7 @@ p {
     color: #ccc;
     font-size: 0.60rem;
     padding: 0;
-    margin-bottom: 0.30rem;
+    margin-bottom: 0.32rem;
 }
 
 .button-action {
@@ -129,13 +129,17 @@ p {
 }
 
 .chatBot .chatBox {
-    height: 91%;
+    height: 91.5%;
     overflow-y: auto;
     padding: 30px 20px 10px;
 }
 
 .chatBox .chat {
     display: flex;
+}
+
+#greetings::after {
+  content: attr(data-content);
 }
 
 .chatBox .outgoing {
@@ -145,9 +149,9 @@ p {
 
 .chatBox .chat p {
     color: #ffffff;
-    max-width: 75vw;
+    max-width: 80vw;
     box-sizing: border-box;
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     padding: 12px 16px;
     border-radius: 10px 10px 0 10px;
     background: #0F8AF2;
@@ -188,7 +192,7 @@ pre {
     background: #262626;
     color: #ffffff;
     font-style: normal;
-    height: 56px;
+    height: 55px;
     width: 100%;
     border: none;
     outline: none;

@@ -11,6 +11,22 @@ function faq() {
 function closeFaq() {
     document.querySelector(".contentFAQ").style.display = "none"
 }
+var greetElem = document.getElementById("greetings");
+var curHr = new Date().getHours();
+var greetMes = ["Wow! Masih Begadang?",
+    "Selamat Pagi.",
+    "Selamat Siang.",
+    "Selamat Sore.",
+    "Selamat Malam.",
+    "Belum Tidur ya?"];
+let greetText = "";
+if (curHr < 4) greetText = greetMes[0];
+else if (curHr < 10) greetText = greetMes[1];
+else if (curHr < 16) greetText = greetMes[2];
+else if (curHr < 18) greetText = greetMes[3];
+else if (curHr < 22) greetText = greetMes[4];
+else greetText = greetMes[5];
+greetElem.setAttribute('data-content', greetText);
 
 let chatInput = document.querySelector(".chat-input input");
 const sendChatBtn = document.querySelector(".chat-input span");
@@ -52,8 +68,6 @@ const handleChat = () => {
 
     userMessage = chatInput.value.trim();
     if (!userMessage) return;
-
-
     chatBox.appendChild(createChatLi(userMessage, "outgoing"));
     chatBox.scrollTo(0, chatBox.scrollHeight)
 
@@ -86,3 +100,10 @@ paste.addEventListener("click", async() => {
     const read = await navigator.clipboard.readText()
     chatInput.value = read
 })
+
+var paragraph = document.querySelector('.incoming');
+var spanElement = document.createElement('span');
+var brElement = document.createElement('br');
+spanElement.setAttribute('class', 'material-symbols-outlined'); spanElement.innerHTML = 'content_copy';
+paragraph.appendChild(spanElement);
+console.log(brElement + spanElement)
